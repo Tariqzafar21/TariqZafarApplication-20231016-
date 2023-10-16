@@ -1,0 +1,88 @@
+﻿@model IEnumerable<TariqZafar.Models.Form>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("ExportCrystal", "Forms", FormMethod.Post))
+{
+    <p>
+        <input type="submit" value="Export PDF" id="ExportPDF" name="ActionType" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FormID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FormID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FormID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts {
+    <script>
+        $(function () {
+            $("#ExportPDF").click(function (e) {
+                window.open('@Url.Action("FormForMachineTest1", "Forms")', "_blank");
+                return false;
+            });
+        });
+    </script>
+}
